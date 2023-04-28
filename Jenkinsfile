@@ -10,24 +10,6 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('Build docker image'){
-            steps{
-                script{
-                    sh 'docker build -t anilimg/devops-integration .'
-                }
-            }
-        }
-        stage('Push image to Hub'){
-            steps{
-                script{
-                   withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u Ireddyanilkumar -p ${Ireddyanilkumar}'
-
-}
-                   sh 'docker push anilimg/devops-integration'
-                }
-            }
-        }
-      }
     }
 
+}
